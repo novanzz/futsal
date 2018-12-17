@@ -124,10 +124,9 @@ class UserAuth extends CI_Controller {
 	    		'password'	=> md5($password)
 	    	);
 			$user = $this->user->getUser($data);
-	    	if(count($user) == 1){
+	    	if($user == true){
 	    		$sessionData = array(
 	    				'username' 	=> $username,
-	    				'id'		=> $user->id,
 						'isLogin'	=> true,
 						'level'     => $user->level
 	    			);

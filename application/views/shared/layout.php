@@ -15,15 +15,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="<?php echo base_url() ?>assets/css/album.css" rel="stylesheet">
 
-    <!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/bootstrap.min.css"/>     -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/bootstrap.min.css"/>    
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/font-awesome.min.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/summernote.css')?>">
     <link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/sweetalert.css')?>">
 
     <!-- Datetimepicker -->
-    <link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/bootstrap-datetimepicker.min.css')?>">
-
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+    
 
     <style type="text/css" media="screen">
         /*Font with internet*/
