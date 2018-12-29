@@ -49,6 +49,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        ?>
       <form action="<?php echo site_url('UserAuth/register')?>" method="post">
          <div class="form-group has-feedback">
+            <label for="usr">Nama :</label>
+            <input name="nama" class="form-control" placeholder="Masukan Nama">
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+         </div>
+         <div class="form-group has-feedback">
             <label for="usr">Username :</label>
             <input name="username" class="form-control" placeholder="Masukan Username">
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -69,8 +74,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
          </div>
          <div class="form-group has-feedback">
-            <label for="almt">Alamat :</label>
-            <input name="alamat" class="form-control" placeholder="Masukan Alamat">
+            <label for="alamat">Alamat :</label>
+            <input name="alamat" class="form-control" placeholder="Masukan Nama">
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
          </div>
          <div class="form-group has-feedback">

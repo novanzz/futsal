@@ -7,7 +7,8 @@ class UserHome extends CI_Controller {
     parent::__construct();
     $this->load->model(array(
       'Model_User'=> 'user',
-      'ultras' => 'ultras'
+      'ultras' => 'ultras',
+      'Model_Book'=> 'book',
     ));
 
 		if ($this->session->level != "user") {
@@ -20,7 +21,16 @@ class UserHome extends CI_Controller {
 		$data['title']="About";
 		$data['page']= 'user/home/about';
 		$this->load->view('shared/layout',$data);
-	}
+  }
+  
+  public function aboutAct(){
+    $tanggal = $this->input->post('tanggal');
+    echo '<script>console.log('.json_encode($tanggal).')</script>';
+    $data = array(
+      'tanggal' 	=> $tanggal,
+    );
+    $success = $this->user->addDate($data);
+  }
 
 	public function logout()
   {
@@ -36,17 +46,19 @@ class UserHome extends CI_Controller {
     $this->load->view('shared/layout',$data);
   }
 
-  public function booking()
+  public function lapangan1()
   {
-    $data = array('booking' => $this->ultras->list());
-    $data['title']="Booking";
-    $data['page']= 'user/home/booking';
-    $this->load->view('shared/layout',$data);
+    
+    // $data = array('booking' => $this->ultras->list());
+    $data['title']="Lapangan 1";
+    $data['data'] = $this->book->getAll();
+    // $data['page']= 'user/home/lapangan1';
+    // $this->load->view('shared/layout',$data);
   }
 
   public function lapangan2()
   {
-    $data = array('lapangan2' => $this->ultras->list());
+    $data = array('booking' => $this->ultras->list());
     $data['title']="Lapangan 2";
     $data['page']= 'user/home/lapangan2';
     $this->load->view('shared/layout',$data);

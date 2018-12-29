@@ -20,6 +20,14 @@ class UserAuth extends CI_Controller {
 	public function register()
     {
     	$config = array(
+			array(
+    			'field'	=> 'nama',
+    			'label'	=> 'Nama',
+    			'rules'	=> 'trim|required',
+    			'errors' => array(
+    				'required'		=> '%s harus diisi'
+    			)
+    		),
     		array(
     			'field'	=> 'username',
     			'label'	=> 'Username',
@@ -78,6 +86,7 @@ class UserAuth extends CI_Controller {
             $data['title']="Registerasi";
             $this->load->view('user/auth/register',$data);
     	}else{
+			$nama   	= $this->input->post('nama');
 			$username   = $this->input->post('username');
             $password   = $this->input->post('password');
             $nama_tim   = $this->input->post('nama_tim');
@@ -85,6 +94,7 @@ class UserAuth extends CI_Controller {
             $no_hp      = $this->input->post('no_hp');
             $level      = "user";
     		$data = array(
+				'nama' 		=> $nama,
     			'username' 	=> $username,
     			'password' 	=> md5($password),
                 'nama_tim' 	=> $nama_tim,

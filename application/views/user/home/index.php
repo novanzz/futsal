@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="container">
     <div class="row">
       <div class="col-md-4">
-        <a href="<?php echo site_url('UserHome/booking'); ?>">
+        <a href="<?php echo site_url('UserHome/lapangan1'); ?>">
           <div class="card mb-4 box btn btn-sm btn-outline-secondary">
             <img class="card-img-top" src="<?php echo base_url() ?>img/lapangan1.jpg" alt="Card image cap">
             <div class="card-body">

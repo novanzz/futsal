@@ -90,18 +90,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         });
     </script>
 
-    <!-- datepicker just 2 weeks -->
-    <script type="text/javascript">
-        $(function () {
-            $('#datepicker').datetimepicker({
-                // locale: moment(),
-                format: 'LL',
-                defaultDate: moment(),
-                maxDate: moment().add(14, 'days'),
-                minDate: moment().subtract(1, 'days')
-            });
-        });
-    </script>
+    
 
 </Body>
 
