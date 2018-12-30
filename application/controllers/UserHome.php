@@ -23,6 +23,7 @@ class UserHome extends CI_Controller {
 		$this->load->view('shared/layout',$data);
   }
   
+  //dummy
   public function aboutAct(){
     $tanggal = $this->input->post('tanggal');
     echo '<script>console.log('.json_encode($tanggal).')</script>';
@@ -30,6 +31,34 @@ class UserHome extends CI_Controller {
       'tanggal' 	=> $tanggal,
     );
     $success = $this->user->addDate($data);
+  }
+
+  //dummy view booking
+  public function viewBooking($no){
+    $data['title']="dummy post booking";
+    $data['no_lap']=$no;
+    $data['page']= 'user/home/dummyPostBook';
+    $this->load->view('shared/layout',$data);
+  }
+
+  //dummy action booking
+  public function postBooking(){
+    $id_lapangan    = $this->input->post('id_lapangan');
+    $id_user        = $this->input->post('id_user');
+    $status_booking = 0 ;
+    $tanggal_booking = $this->input->post('tanggal');
+    $jam_main       = $this->input->post('jam_main');
+    $waktu_expired  = $this->input->post('exp');
+    $data = array(
+      'id_lapangan'	=> $id_lapangan,
+      'id_user'	    => $id_user,
+      'status_booking'	=> $status_booking,
+      'tanggal_booking'	=> $tanggal_booking,
+      'jam_main'	=> $jam_main,
+      'waktu_expired' => $waktu_expired,
+    );
+    $post = $this->book->addBook($data);
+    redirect("UserHome/index");
   }
 
 	public function logout()
@@ -46,14 +75,14 @@ class UserHome extends CI_Controller {
     $this->load->view('shared/layout',$data);
   }
 
-  public function lapangan1()
-  {
-    
-    // $data = array('booking' => $this->ultras->list());
-    $data['title']="Lapangan 1";
-    $data['data'] = $this->book->getAll();
-    // $data['page']= 'user/home/lapangan1';
-    // $this->load->view('shared/layout',$data);
+  //Berubah
+  public function lapangan($no) 
+  { 
+    $data['title']="Lapangan"; 
+    $data['data'] = $this->book->lap1($no); 
+    $data['no_lap'] = $no;
+    $data['page']= 'user/home/lapangan1'; 
+    $this->load->view('shared/layout',$data); 
   }
 
   public function lapangan2()

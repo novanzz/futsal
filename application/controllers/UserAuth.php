@@ -136,7 +136,8 @@ class UserAuth extends CI_Controller {
 			$user = $this->user->getUser($data);
 	    	if($user == true){
 	    		$sessionData = array(
-	    				'username' 	=> $username,
+						'username' 	=> $username,
+						'id_user'	=> $user->id_user,
 						'isLogin'	=> true,
 						'level'     => $user->level
 	    			);
