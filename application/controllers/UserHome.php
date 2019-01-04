@@ -47,18 +47,46 @@ class UserHome extends CI_Controller {
     $id_user        = $this->input->post('id_user');
     $status_booking = 0 ;
     $tanggal_booking = $this->input->post('tanggal');
-    $jam_main       = $this->input->post('jam_main');
+    $id_jadwal       = $this->input->post('id_jadwal');
     $waktu_expired  = $this->input->post('exp');
     $data = array(
       'id_lapangan'	=> $id_lapangan,
       'id_user'	    => $id_user,
       'status_booking'	=> $status_booking,
       'tanggal_booking'	=> $tanggal_booking,
-      'jam_main'	=> $jam_main,
+      'id_jadwal'	=> $id_jadwal,
       'waktu_expired' => $waktu_expired,
     );
-    $post = $this->book->addBook($data);
-    redirect("UserHome/index");
+    $dataMatch = array(
+      'id_lapangan'	=> $id_lapangan,
+      'tanggal_booking'	=> $tanggal_booking,
+      'id_jadwal'	=> $id_jadwal
+    );
+    $booking= $this->book->getAllBooking($dataMatch);
+    if($booking == true){
+      echo "<script>alert('Tanggal dan Jam Main Sudah di Booking');location='"
+      .site_url('UserHome/viewBooking/'.$id_lapangan)."'</script>";
+    }else{
+      $post = $this->book->addBook($data);
+      echo "<script>alert('Booking Sukses');location='".site_url('UserHome/index')."'</script>";
+    }
+  }
+
+  //dummyGet Booking peruser
+  public function getBookingUser(){
+    $data['title']="Booking";
+    $id= $this->session->id_user;
+    $data['db_book']=$this->book->getBookUser($id);
+    $data['page']= 'user/home/dummyGetBook';
+    $this->load->view('shared/layout',$data);
+  }
+
+  //dummy
+  public function selectBookbyId($id){
+    echo '<script>console.log('.json_encode($id).')</script>'; 
+    // $data['db_book']=$this->book->getBookUser($id);
+    // $data['page']= 'user/home/dummyGetBook';
+    // $this->load->view('shared/layout',$data);
   }
 
 	public function logout()
@@ -79,48 +107,52 @@ class UserHome extends CI_Controller {
   public function lapangan($no) 
   { 
     $data['title']="Lapangan"; 
-    $data['data'] = $this->book->lap1($no); 
+    $tanggal_booking = $this->input->post('tanggal');
+    echo '<script>console.log('.json_encode($tanggal_booking).')</script>';
+    // $data['data'] = $this->book->lap1($no); 
+    $data['data'] = $this->book->alljadwal($no);
+		$data['Booking'] = $this->book->GetBookingByLapangan($no,$tanggal_booking);
     $data['no_lap'] = $no;
     $data['page']= 'user/home/lapangan1'; 
     $this->load->view('shared/layout',$data); 
   }
 
-  public function lapangan2()
-  {
-    $data = array('booking' => $this->ultras->list());
-    $data['title']="Lapangan 2";
-    $data['page']= 'user/home/lapangan2';
-    $this->load->view('shared/layout',$data);
-  }
+  // public function lapangan2()
+  // {
+  //   $data = array('booking' => $this->ultras->list());
+  //   $data['title']="Lapangan 2";
+  //   $data['page']= 'user/home/lapangan2';
+  //   $this->load->view('shared/layout',$data);
+  // }
 
-  public function lapangan3()
-  {
-    $data = array('lapangan3' => $this->ultras->list());
-    $data['title']="Lapangan 3";
-    $data['page']= 'user/home/lapangan3';
-    $this->load->view('shared/layout',$data);
-  }
+  // public function lapangan3()
+  // {
+  //   $data = array('lapangan3' => $this->ultras->list());
+  //   $data['title']="Lapangan 3";
+  //   $data['page']= 'user/home/lapangan3';
+  //   $this->load->view('shared/layout',$data);
+  // }
 
-  public function lapangan4(){
-    $data = array('lapangan4' => $this->ultras->list());
-    $data['title']="Lapangan 4";
-    $data['page']= 'user/home/lapangan4';
-    $this->load->view('shared/layout',$data);
-  }
+  // public function lapangan4(){
+  //   $data = array('lapangan4' => $this->ultras->list());
+  //   $data['title']="Lapangan 4";
+  //   $data['page']= 'user/home/lapangan4';
+  //   $this->load->view('shared/layout',$data);
+  // }
 
-  public function lapangan5(){
-    $data = array('lapangan5' => $this->ultras->list());
-    $data['title']="Lapangan 5";
-    $data['page']= 'user/home/lapangan5';
-    $this->load->view('shared/layout',$data);
-  }
+  // public function lapangan5(){
+  //   $data = array('lapangan5' => $this->ultras->list());
+  //   $data['title']="Lapangan 5";
+  //   $data['page']= 'user/home/lapangan5';
+  //   $this->load->view('shared/layout',$data);
+  // }
 
-  public function lapangan6(){
-    $data = array('lapangan6' => $this->ultras->list());
-    $data['title']="Lapangan 6";
-    $data['page']= 'user/home/lapangan6';
-    $this->load->view('shared/layout',$data);
-  }
+  // public function lapangan6(){
+  //   $data = array('lapangan6' => $this->ultras->list());
+  //   $data['title']="Lapangan 6";
+  //   $data['page']= 'user/home/lapangan6';
+  //   $this->load->view('shared/layout',$data);
+  // }
 
   public function pembayaran(){
     $data['title']="Pembayaran";

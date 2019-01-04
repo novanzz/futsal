@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <h3 class="masthead-brand float-left" style="color:#fff; padding-top:10px;padding-left:10px;">MFC Futsal</h3>
     <nav class="nav nav-masthead justify-content-center float-right p-3">
       <a class="nav-link active" href="<?php echo site_url('UserHome/index') ?>">Home</a>
-      <a class="nav-link" href="<?php echo site_url('UserHome/pembayaran') ?>">Pembayaran</a>
+      <a class="nav-link" href="<?php echo site_url('UserHome/getBookingUser') ?>">Pembayaran</a>
       <a class="nav-link" href="<?php echo site_url('UserHome/sop') ?>">SOP</a>
       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">MyProfil</a>
       <div class="dropdown-menu">
