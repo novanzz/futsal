@@ -72,6 +72,13 @@ class UserHome extends CI_Controller {
     }
   }
 
+  public function deleteBook($id_booking){
+    $id =  $id_booking;
+    if ($this->book->deleteBooking($id)== "TRUE") {
+      redirect('UserHome/getBookingUser');
+    }
+  }
+
   //dummyGet Booking peruser
   public function getBookingUser(){
     $data['title']="Booking";
@@ -83,7 +90,26 @@ class UserHome extends CI_Controller {
 
   //dummy
   public function selectBookbyId($id){
-    echo '<script>console.log('.json_encode($id).')</script>'; 
+    // echo '<script>console.log('.json_encode($id).')</script>';
+    
+    $config['upload_path'] = './assets/uploads/';
+    $config['allowed_types'] = 'gif|jpg|png|jpeg'; 
+
+    $ko=$this->load->library('upload', $config);
+    echo '<script>console.log('.json_encode($ko).')</script>'; 
+
+    if(!$this->upload->do_upload('gambar')){
+      echo "<script>alert('File Harus Gambar');location='".site_url()."/UserHome/getBookingUser'</script>";
+    }else{
+      $data = array(
+        'status_booking'=> 1,
+        'waktu_expired'=> 0,
+        'bukti_bayar' => $this->upload->data('file_name'),
+      );
+      if ($this->book->updateStatus($id,$data)== "TRUE") {
+        redirect('UserHome/getBookingUser');
+      }
+    }
     // $data['db_book']=$this->book->getBookUser($id);
     // $data['page']= 'user/home/dummyGetBook';
     // $this->load->view('shared/layout',$data);
@@ -108,7 +134,7 @@ class UserHome extends CI_Controller {
   { 
     $data['title']="Lapangan"; 
     $tanggal_booking = $this->input->post('tanggal');
-    echo '<script>console.log('.json_encode($tanggal_booking).')</script>';
+    $data['tgl_book'] =$tanggal_booking;
     // $data['data'] = $this->book->lap1($no); 
     $data['data'] = $this->book->alljadwal($no);
 		$data['Booking'] = $this->book->GetBookingByLapangan($no,$tanggal_booking);

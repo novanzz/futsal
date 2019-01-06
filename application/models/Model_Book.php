@@ -47,7 +47,7 @@ class Model_book extends CI_Model {
 
     //berubah
     public function GetBookingByLapangan($no,$tanggal_booking)
-     {
+     {  
         $this->db->select('user.*,tb.*');
         $this->db->from('tbl_booking as tb');
         $this->db->join('user as user',' user.id_user = tb.id_user','inner');
@@ -80,5 +80,25 @@ class Model_book extends CI_Model {
         // $hasil = $this->db->get()->result(); 
         // echo '<script>console.log('.json_encode($hasil).')</script>'; 
         return $this->db->get()->result(); 
+    }
+
+    public function updateStatus($id,$data){
+        $this->db->where('id_booking', $id);
+		$this->db->update('tbl_booking',$data);
+		if($this->db->affected_rows() >=0){
+		  return true; 
+		}else{
+		  return false; 
+		}
+    }
+
+    public function deleteBooking($id){
+        $this->db->where('id_booking', $id);
+		$this->db->delete('tbl_booking');
+		if($this->db->affected_rows() >=0){
+		  return true; 
+		}else{
+		  return false; 
+		}
     }
 }

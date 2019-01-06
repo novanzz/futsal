@@ -11,10 +11,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <a href="<?php echo site_url('UserHome/viewBooking/'.$no_lap)?>" class="btn btn-primary">Booking</a>
   </span>
   </div>
+  <h4 id="tanggalsearch">Tanggal Booking : </h4>
   <form action="<?php echo site_url('UserHome/lapangan/'.$no_lap)?>" method="post">
   <div class="form-group">
     <div class='input-group date' id='datepicker'>
-      <input type='text' class="form-control" name="tanggal" />
+      <input type='text' class="form-control" name="tanggal" value=""/>
       <span class="input-group-addon">
         <span class="glyphicon glyphicon-calendar"></span>
       </span>
@@ -56,6 +57,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <?php if ($BookingLap->status_booking == 0): ?>
             <p  style="color:#FF0000">Booking</p>
           <?php elseif ($BookingLap->status_booking == 1): ?>
+            <p style="color:#ffa500">Waiting Verify</p>
+          <?php elseif ($BookingLap->status_booking == 2): ?>
             <p style="color:#008000">Booked</p>
             <?php else: ?>
               <p>Free</p>
@@ -84,6 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     </tbody>
   </table>
+  <!-- <?php echo '<script>console.log('.json_encode($tgl_book).')</script>'; ?> -->
 </div>
 
 <script type="text/javascript">
@@ -100,7 +104,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       format: "YYYY-MM-DD" ,
       defaultDate: moment(),
       maxDate: moment().add(14, 'days'),
-      minDate: moment().subtract(1, 'days')
+      minDate: moment().subtract(7, 'days')
     });
+    $('input[name=tanggal]').val("<?php echo $tgl_book ?>");
   });
 </script>
+
+<script>

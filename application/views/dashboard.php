@@ -25,7 +25,7 @@
         <div class="dropdown-menu">
           <a class="dropdown-item" href="<?php echo site_url('admin/profil') ?>">MyProfil</a>
           <a class="dropdown-item" href="<?php echo site_url('admin/login') ?>">Login</a>
-          <a class="dropdown-item" href="<?php echo site_url('logout/sandysuy') ?>">Logout</a>
+          <a class="dropdown-item" href="<?php echo site_url('AdminHome/logout') ?>">Logout</a>
         </div>
       </ul>
     </nav>
