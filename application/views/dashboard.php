@@ -41,12 +41,22 @@
                   Home <span class="sr-only">(current)</span>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link " href="<?php echo site_url('admin/listorder') ?>">
-                  <span data-feather="list"></span>
-                  List Orders
-                </a>
-              </li>
+              <li class="nav-item dropdown">
+              <?php $lap1 = 1; ?>
+              <?php $lap2 = 2; ?>
+              <?php $lap3 = 3; ?>
+              <?php $lap4 = 4; ?>
+              <?php $lap5 = 5; ?>
+              <?php $lap6 = 6; ?>
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">  <span data-feather="list"></span>List Order</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="<?php echo site_url('AdminHome/listorder/'.$lap1) ?>">Lapangan 1</a>
+                <a class="dropdown-item" href="<?php echo site_url('AdminHome/listorder/'.$lap2) ?>">Lapangan 2</a>
+                <a class="dropdown-item" href="<?php echo site_url('AdminHome/listorder/'.$lap3) ?>">Lapangan 3</a>
+                <a class="dropdown-item" href="<?php echo site_url('AdminHome/listorder/'.$lap4) ?>">Lapangan 4</a>
+                <a class="dropdown-item" href="<?php echo site_url('AdminHome/listorder/'.$lap5) ?>">Lapangan 5</a>
+                <a class="dropdown-item" href="<?php echo site_url('AdminHome/listorder/'.$lap6) ?>">Lapangan 6</a>
+            </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="users"></span>

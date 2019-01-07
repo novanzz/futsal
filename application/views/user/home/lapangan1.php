@@ -4,23 +4,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="container">
   <div class="clearfix" style="margin-top:30px;">
-    <span class="float-left">
-      <h3 class="text-muted">List Jadwal Pemesanan</h3>
+    <span class="clearfix">
+    <center><h3 style="margin-bottom:40px;">List Tabel Booking Lapangan <?php echo $lapangan_book ?> </h3></center>
     </span>
     <span class="float-right">
-    <a href="<?php echo site_url('UserHome/viewBooking/'.$no_lap)?>" class="btn btn-primary">Booking</a>
   </span>
   </div>
-  <h4 id="tanggalsearch">Tanggal Booking : </h4>
   <form action="<?php echo site_url('UserHome/lapangan/'.$no_lap)?>" method="post">
-  <div class="form-group">
+  <div class="form-group float-right">
     <div class='input-group date' id='datepicker'>
-      <input type='text' class="form-control" name="tanggal" value=""/>
+      <input id='gettanggal' type='text' class="form-control" name="tanggal"/>
+      <button type="submit" class="btn btn-success" id="post" style="margin-left:30px;">Cari Jadwal</button>
+      <!-- <a href="<?php echo site_url('UserHome/viewBooking/'.$no_lap)?>"
+        class="btn btn-primary" style="margin-left:30px;">Booking</a> -->
+
       <span class="input-group-addon">
         <span class="glyphicon glyphicon-calendar"></span>
       </span>
     </div>
-    <button type="submit" class="btn btn-primary btn-block" id="post">Search Jadwal</button>
+    <!-- <button type="submit" class="btn btn-success" id="post">Cari Jadwal Berdasarkan tanggal</button> -->
+    <!-- <h2>Jadwal Lapangan :  <h2 id="myP"></h2></h2> -->
+
+    <a href="<?php echo site_url('UserHome/viewBooking/'.$no_lap)?>"
+      class="btn btn-primary btn-block" style="margin-top:20px;">Booking</a>
+
   </div>
   </form>
   <table class="table table-bordered table-striped">
@@ -98,6 +105,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <script type="text/javascript">
   $(function () {
+    $('input[name=tanggal]').val("<?php echo $tgl_book ?>");
     $('#datepicker').datetimepicker({
       // locale: moment(),
       // format: 'l',
@@ -106,7 +114,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       maxDate: moment().add(14, 'days'),
       minDate: moment().subtract(7, 'days')
     });
-    $('input[name=tanggal]').val("<?php echo $tgl_book ?>");
   });
 </script>
 

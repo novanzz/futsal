@@ -134,8 +134,12 @@ class UserHome extends CI_Controller {
   { 
     $data['title']="Lapangan"; 
     $tanggal_booking = $this->input->post('tanggal');
+    if($tanggal_booking == null){
+      $tanggal_booking = date('y-m-d');
+    }
     $data['tgl_book'] =$tanggal_booking;
-    // $data['data'] = $this->book->lap1($no); 
+    // $data['data'] = $this->book->lap1($no);
+    $data['lapangan_book'] = $no; 
     $data['data'] = $this->book->alljadwal($no);
 		$data['Booking'] = $this->book->GetBookingByLapangan($no,$tanggal_booking);
     $data['no_lap'] = $no;
