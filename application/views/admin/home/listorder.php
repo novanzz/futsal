@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php elseif ($BookingLap->status_booking == 1): ?>
                       <?php echo $BookingLap->nama_tim ?>
                       <?php else: ?>
-                        <p>Booked</p>
+                      <?php echo $BookingLap->nama_tim ?>
                       <?php endif; ?>
                     <?php endif; ?>
                     <?php }?>

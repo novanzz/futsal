@@ -117,7 +117,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           //If the count down is finished, write some text 
           if (countDownDate == 0) {
             // clearInterval(x);
-            countDown.innerHTML = "Waiting Verify";
+            countDown.innerHTML = "-";
           }else if(distance < 0){
             countDown.innerHTML = "Expired";
             $.post({
