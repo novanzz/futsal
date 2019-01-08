@@ -26,7 +26,8 @@ class AdminAuth extends CI_Controller {
     			'rules'	=> 'trim|required|is_unique[admin.username]',
     			'errors' => array(
     				'required'		=> '%s harus diisi',
-    				'min_length[5]'	=> 'Panjang %s harus lebih dari 5'
+					'min_length[5]'	=> 'Panjang %s harus lebih dari 5',
+					'is_unique'		=> '%s sudah digunakan'
     			)
     		),
     		array(
@@ -41,7 +42,11 @@ class AdminAuth extends CI_Controller {
     		array(
     			'field'	=> 'repassword',
     			'label'	=> 'Re-Password',
-    			'rules'	=> 'required|matches[password]'
+				'rules'	=> 'required|matches[password]',
+				'errors' => array(
+                    'required'      => '%s harus diisi',
+                    'matches' 		=> '%s tidak sama'
+                )
 			),
     	);
     	$this->form_validation->set_rules($config);

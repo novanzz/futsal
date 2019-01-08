@@ -23,6 +23,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   nav a:hover {
     color: #fff;
   }
+
+  .inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.zoom {
+  transition: transform .2s;
+}
+
+.zoom:hover {
+  -ms-transform: scale(2.5); /* IE 9 */
+  -webkit-transform: scale(2.5); /* Safari 3-8 */
+  transform: scale(2.5); 
+}
+
 </style>
 
   <div class="inner clearfix">
@@ -34,7 +54,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">MyProfil</a>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="<?php echo site_url('UserHome/profil') ?>">MyProfil</a>
-        <a class="dropdown-item" href="<?php echo site_url('UserAuth/login') ?>">Login</a>
         <a class="dropdown-item" href="<?php echo site_url('UserHome/logout') ?>">Logout</a>
       </div>
     </nav>

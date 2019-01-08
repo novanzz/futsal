@@ -14,6 +14,17 @@ class Model_book extends CI_Model {
 		// return $this->db->get()->result();
     }
 
+    public function getBookingAdmin()
+  	{
+          $this->db->select('user.*,tb.*');
+          $this->db->from('tbl_booking as tb');
+          $this->db->join('user as user',' user.id_user = tb.id_user','inner');
+          // $this->db->where($username);
+          // $hasil = $this->db->get()->result();
+          // echo '<script>console.log('.json_encode($hasil).')</script>';
+  		return $this->db->get()->result();
+      }
+
     public function getBookingUser()
 	{
         $this->db->select('user.username, tb.*');
@@ -44,6 +55,29 @@ class Model_book extends CI_Model {
         // echo '<script>console.log('.json_encode($hasil).')</script>';
         return $this->db->get()->result();
     }
+
+    public function alljadwalAdmin()
+     {
+        $this->db->select('*');
+        $this->db->from('tbl_jadwal');
+        // $hasil = $this->db->get()->result();
+        // echo '<script>console.log('.json_encode($hasil).')</script>';
+        return $this->db->get()->result();
+    }
+
+    public function GetBookingByLapanganAdmin($id)
+    {
+      $this->db->select('*');
+      $this->db->from('tbl_booking as tb');
+      $this->db->join('user as user',' user.id_user = tb.id_user','inner');
+      $this->db->join('tbl_jadwal as tj',' tj.id_jadwal = tb.id_jadwal','inner');
+      $this->db->where('tb.status_booking',$id);
+      $this->db->order_by('tb.tanggal_booking','asc');
+      // $query = $this->db->get()->result();
+      // echo '<script>console.log('.json_encode($query).')</script>';
+      return $this->db->get()->result();
+   }
+
 
     //berubah
     public function GetBookingByLapangan($no,$tanggal_booking)
@@ -89,6 +123,16 @@ class Model_book extends CI_Model {
 		  return true; 
 		}else{
 		  return false; 
+		}
+    }
+
+    public function updateStatusAdmin($id,$data){
+        $this->db->where('id_booking', $id);
+		$this->db->update('tbl_booking',$data);
+		if($this->db->affected_rows() >=0){
+		  return true;
+		}else{
+		  return false;
 		}
     }
 

@@ -32,10 +32,19 @@ class AdminHome extends CI_Controller {
 		$data['tgl_book'] = $tanggal_booking;
 	  $data['Booking'] = $this->book->GetBookingByLapangan($no,$tanggal_booking);
 		$data['no_lap'] = $no;
-		$data['page']= 'user/home/listorder';
-		$this->load-> view ('user/home/listorder',$data);
-	}
-
+		$data['page']= 'admin/home/listorder';
+    $this->load-> view ('shared/admin/layout',$data);
+  }
+  
+  public function verifikasi()
+	{
+		$data['title']="Verifikasi";
+		$id_status = 1;
+		$data['Booking'] = $this->book->GetBookingByLapanganAdmin($id_status);
+    $data['page']= 'admin/home/verifikasi';
+    $this->load->view('shared/admin/layout',$data);
+  }
+  
 	public function updateBookByAdmin($id)
 	{
 	$status_booking = $this->input->post('status_booking');
@@ -43,25 +52,15 @@ class AdminHome extends CI_Controller {
 	      'status_booking'	=> 2,
 	  );
 		if ($this->book->updateStatusAdmin($id,$data)== "TRUE") {
-        redirect('UserHome/index');
+        redirect('AdminHome/verifikasi');
       }
 
 	}
 
-
-  //Punya Admin?
   public function index (){
-    $this->load-> view ('dashboard');
-  }
-  public function grafic (){
-    $this->load-> view ('grafic');
-  }
-  public function alert (){
-    $this->load-> view ('alert');
-  }
-
-  public function tampil(){
-    $tampil['tampil'] = $this->ultras->tampil();
+    $data['title']="dashboard";
+    $data['page']= 'admin/home/dashboard';
+    $this->load-> view ('shared/admin/layout',$data);
   }
 
 }

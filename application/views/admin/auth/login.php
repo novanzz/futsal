@@ -17,10 +17,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
-  <!-- Datetimepicker -->
-  <link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/bootstrap-datetimepicker.min.css')?>">
-
-
   <style type="text/css" media="screen">
     /*Font with internet*/
     @import url('https://fonts.googleapis.com/css?family=Pacifico');
@@ -50,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <!-- form card login -->
           <div id="form" class="card rounded-0 well well-lg">     
             <div class="card-body">
-            <h2 class="text-center mb-4">Login Form</h2>
+            <h2 class="text-center mb-4">Login Admin</h2>
               <form action="<?php echo site_url('AdminAuth/login')?>" method="post">
                 <div class="form-group">
                   <?php if(validation_errors()){?>

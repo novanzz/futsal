@@ -34,7 +34,8 @@ class UserAuth extends CI_Controller {
     			'rules'	=> 'trim|required|is_unique[user.username]',
     			'errors' => array(
     				'required'		=> '%s harus diisi',
-    				'min_length[5]'	=> 'Panjang %s harus lebih dari 5'
+					'min_length[5]'	=> 'Panjang %s harus lebih dari 5',
+					'is_unique'		=> 'Username sudah digunakan'
     			)
     		),
     		array(
@@ -49,7 +50,11 @@ class UserAuth extends CI_Controller {
     		array(
     			'field'	=> 'repassword',
     			'label'	=> 'Re-Password',
-    			'rules'	=> 'required|matches[password]'
+				'rules'	=> 'required|matches[password]',
+				'errors' => array(
+                    'required'      => '%s harus diisi',
+                    'matches' 		=> 'Password tidak sama'
+                )
 			),
 			array(
     			'field'	=> 'nama_tim',
@@ -58,7 +63,7 @@ class UserAuth extends CI_Controller {
     			'errors' => array(
     				'required'		=> '%s harus diisi',
                     'min_length[5]'	=> 'Panjang %s harus lebih dari 3 huruf',
-                    'is_unique'     => '%s nama team sudah digunakan'
+                    'is_unique'     => '%s sudah digunakan'
                 )
             ),
             array(
@@ -76,7 +81,7 @@ class UserAuth extends CI_Controller {
     			'rules'	=> 'trim|required|numeric',
     			'errors' => array(
     				'required'		=> '%s harus diisi',
-    				'numeric'	    => 'Data %s harus angka'
+    				'numeric'	    => '%s harus angka'
                 )
             ),
     	);
@@ -122,10 +127,8 @@ class UserAuth extends CI_Controller {
     	$this->form_validation->set_rules('username', 'Username', 'required');
     	$this->form_validation->set_rules('password', 'Password', 'required');
     	if($this->form_validation->run() == false){
-
     		$data['title']="Login";
             $this->load->view('user/auth/login',$data);
-
     	}else{
     		$username = $this->input->post('username');
     		$password = $this->input->post('password');

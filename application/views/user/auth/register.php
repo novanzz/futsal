@@ -24,18 +24,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <style type="text/css" media="screen">
     /*Font with internet*/
     @import url('https://fonts.googleapis.com/css?family=Pacifico');
-
-    #form {
-      margin: auto;
-      width: 100%;
-    }
   </style>
 
 </head>
 
 <body>
 <div class="container">
-<div class="row"  style="margin-top:10vh">
+<div class="row"  style="margin-top:3vh">
    <div class=" col-md-4 col-md-offset-4  jumbotron" >
       <h2 class="text-center">Register Form</h2>
       <hr>
@@ -71,17 +66,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          <div class="form-group has-feedback">
             <label for="nmeteam">Nama Team :</label>
             <input name="nama_tim" class="form-control" placeholder="Masukan Nama team">
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            <span class="fa fa-users form-control-feedback" style="margin-top: 10px; font-size:20px;"></span>
          </div>
          <div class="form-group has-feedback">
             <label for="alamat">Alamat :</label>
             <input name="alamat" class="form-control" placeholder="Masukan Nama">
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            <span class="glyphicon glyphicon-home form-control-feedback"></span>
          </div>
          <div class="form-group has-feedback">
             <label for="nohp">Nomor Hp :</label>
             <input name="no_hp" class="form-control" placeholder="Masukan Nomor Hp">
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            <span class="fa fa-phone form-control-feedback" style="margin-top: 10px; font-size:20px;"></span>
          </div>
          <button type="submit" class="btn btn-primary btn-block">Daftar</button>
          <a  href="<?php echo site_url('UserAuth/login')?>" class="btn btn-danger btn-block">Batal</a>
