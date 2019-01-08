@@ -107,9 +107,10 @@ class Model_book extends CI_Model {
 
     //get book user
     public function getBookUser($id){
-        $this->db->select('user.*,tb.*'); 
-        $this->db->from('tbl_booking as tb'); 
-        $this->db->join('user as user',' user.id_user = tb.id_user','inner'); 
+        $this->db->select('*');
+        $this->db->from('tbl_booking as tb');
+        $this->db->join('user as user',' user.id_user = tb.id_user','inner');
+        $this->db->join('tbl_jadwal as tj',' tj.id_jadwal = tb.id_jadwal','inner'); 
         $this->db->where('user.id_user',$id); 
         // $hasil = $this->db->get()->result(); 
         // echo '<script>console.log('.json_encode($hasil).')</script>'; 

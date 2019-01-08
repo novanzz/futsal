@@ -17,6 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <th>Jam Mulai</th>
           <th>Status</th>
           <th> Batas Waktu Pembayaran</th>
+          <th>Lapangan</th>
           <th>Bukti Bayar</th>
           <th>Upload Preview</th>
       </tr>
@@ -32,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <?php echo $book->tanggal_booking; ?>
         </td>
         <td>
-          <?php echo $book->id_jadwal; ?>
+          <?php echo $book->jam_main; ?>
         </td>
         <td>
           <?php if ($book->status_booking == 0): ?>
@@ -49,6 +50,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </td>
         <td>
           <h5 id="demo"></h5>
+        </td>
+        <td>
+          <?php echo $book->id_lapangan; ?>
         </td>
         <td>
           <form action="<?php echo site_url('UserHome/selectBookbyId/'.$book->id_booking)?>" method="post" enctype="multipart/form-data">
