@@ -40,7 +40,9 @@ class AdminHome extends CI_Controller {
 	{
 		$data['title']="Verifikasi";
 		$id_status = 1;
-		$data['Booking'] = $this->book->GetBookingByLapanganAdmin($id_status);
+    $data['Booking'] = $this->book->GetBookingByLapanganAdmin($id_status);
+    $data['Booking1'] = $this->book->GetBookingByLapanganAdmin1($id_status);
+    $data['Booking2'] = $this->book->GetBookingByLapanganAdmin2($id_status);
     $data['page']= 'admin/home/verifikasi';
     $this->load->view('shared/admin/layout',$data);
   }

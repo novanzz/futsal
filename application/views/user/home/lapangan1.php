@@ -38,7 +38,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <tbody>
       <?php $nomor = 1; ?>
       <?php foreach ($data as $book) { ?>
-
       <tr>
         <td>
           <?php echo $nomor; ?>
@@ -48,30 +47,67 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </td>
         <td>
           <?php foreach($Booking as $BookingLap){ ?>
-          <?php if ($BookingLap->id_jadwal == $book->id_jadwal): ?>
-          <?php if ($BookingLap->status_booking == 0): ?>
-          <p style="color:#FF0000">Booking</p>
-          <?php elseif ($BookingLap->status_booking == 1): ?>
-          <p style="color:#ffa500">Waiting Verify</p>
-          <?php elseif ($BookingLap->status_booking == 2): ?>
-          <p style="color:#008000">Booked</p>
-          <?php else: ?>
-          <p>Free</p>
+            <?php if ($BookingLap->id_jadwal == $book->id_jadwal): ?>
+              <?php if ($BookingLap->status_booking == 0): ?>
+                <p style="color:#FF0000">Booking</p>
+              <?php elseif ($BookingLap->status_booking == 1): ?>
+                <p style="color:#ffa500">Waiting Verify</p>
+              <?php elseif ($BookingLap->status_booking == 2): ?>
+                <p style="color:#008000">Booked</p>
+              <?php else: ?>
+            <?php endif; ?>
           <?php endif; ?>
+          <?php if ($BookingLap->id_jadwal1 == $book->id_jadwal): ?>
+              <?php if ($BookingLap->status_booking == 0): ?>
+                <p style="color:#FF0000">Booking</p>
+              <?php elseif ($BookingLap->status_booking == 1): ?>
+                <p style="color:#ffa500">Waiting Verify</p>
+              <?php elseif ($BookingLap->status_booking == 2): ?>
+                <p style="color:#008000">Booked</p>
+              <?php else: ?>
+            <?php endif; ?>
+          <?php endif; ?>
+          <?php if ($BookingLap->id_jadwal2 == $book->id_jadwal): ?>
+              <?php if ($BookingLap->status_booking == 0): ?>
+                <p style="color:#FF0000">Booking</p>
+              <?php elseif ($BookingLap->status_booking == 1): ?>
+                <p style="color:#ffa500">Waiting Verify</p>
+              <?php elseif ($BookingLap->status_booking == 2): ?>
+                <p style="color:#008000">Booked</p>
+              <?php else: ?>
+            <?php endif; ?>
           <?php endif; ?>
           <?php }?>
         </td>
         <td>
           <?php foreach($Booking as $BookingLap){ ?>
-          <?php if ($BookingLap->id_jadwal == $book->id_jadwal):?>
-          <?php if ($BookingLap->status_booking == 0): ?>
-          <?php echo $BookingLap->nama_tim ?>
-          <?php elseif ($BookingLap->status_booking == 1): ?>
-          <?php echo $BookingLap->nama_tim ?>
-          <?php else: ?>
-          <?php echo $BookingLap->nama_tim ?>
-          <?php endif; ?>
-          <?php endif; ?>
+            <?php if ($BookingLap->id_jadwal == $book->id_jadwal):?>
+              <?php if ($BookingLap->status_booking == 0): ?>
+                <?php echo $BookingLap->nama_tim ?>
+              <?php elseif ($BookingLap->status_booking == 1): ?>
+                <?php echo $BookingLap->nama_tim ?>
+              <?php else: ?>
+                <?php echo $BookingLap->nama_tim ?>
+              <?php endif; ?>
+            <?php endif; ?>
+            <?php if ($BookingLap->id_jadwal1 == $book->id_jadwal):?>
+              <?php if ($BookingLap->status_booking == 0): ?>
+                <?php echo $BookingLap->nama_tim ?>
+              <?php elseif ($BookingLap->status_booking == 1): ?>
+                <?php echo $BookingLap->nama_tim ?>
+              <?php else: ?>
+                <?php echo $BookingLap->nama_tim ?>
+              <?php endif; ?>
+            <?php endif; ?>
+            <?php if ($BookingLap->id_jadwal2 == $book->id_jadwal):?>
+              <?php if ($BookingLap->status_booking == 0): ?>
+                <?php echo $BookingLap->nama_tim ?>
+              <?php elseif ($BookingLap->status_booking == 1): ?>
+                <?php echo $BookingLap->nama_tim ?>
+              <?php else: ?>
+                <?php echo $BookingLap->nama_tim ?>
+              <?php endif; ?>
+            <?php endif; ?>
           <?php }?>
         </td>
       </tr>

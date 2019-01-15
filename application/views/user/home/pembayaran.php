@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </thead>
     <tbody>
       <?php $nomor = 1; ?>
-      <?php foreach ($db_book as $book) { ?>
+      <?php foreach ($db_book as $book) { ?>  
       <tr>
         <td>
           <?php echo $nomor; ?>
@@ -33,7 +33,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <?php echo $book->tanggal_booking; ?>
         </td>
         <td>
-          <?php echo $book->jam_main; ?>
+          <?php echo $book->jam_main;?>
+          <br/>
+          <?php if ($book->id_jadwal1 == true): ?> 
+            <?php foreach ($db_book1 as $book1) { ?> 
+              <?php if ($book->id_booking == $book1->id_booking): ?> 
+                <?php echo $book1->jam_main;?>
+              <br>
+              <?php endif ?>
+            <?php }?>
+          <?php endif ?>
+          <?php if ($book->id_jadwal2 == true): ?> 
+            <?php foreach ($db_book2 as $book2) { ?> 
+              <?php if ($book->id_booking == $book2->id_booking): ?>  
+              <?php echo $book2->jam_main;?>
+              <br>
+              <?php endif ?>
+            <?php }?>
+          <?php endif ?>
         </td>
         <td>
           <?php if ($book->status_booking == 0): ?>
@@ -54,18 +71,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <td>
           <?php echo $book->id_lapangan; ?>
         </td>
+        <?php if ($book->status_booking == 2): ?> 
+        <td>
+        <p style="color:#008000">Booked</p>
+        </td>
+        <?php else: ?>
         <td>
           <form action="<?php echo site_url('UserHome/selectBookbyId/'.$book->id_booking)?>" method="post" enctype="multipart/form-data">
             <input type="file" name="gambar" class="form-control" onchange="readURL(this);">
             <Button type="submit" class="btn fa fa-upload btn-block btn-success" style="margin-top:20px;">Upload Bukti Bayar</Button>
           </form>
         </td>
+        <?php endif ?>
         <td>
         <img class="zoom" src= "<?php echo base_url('assets/uploads/'.$book->bukti_bayar)?>" class="img-thumbnail" style="width:100;height:130;" />
         </td>
       </tr>
       <?php $nomor = $nomor + 1; ?>
       <?php }?>
+   
+      
     </tbody>
   </table>
 

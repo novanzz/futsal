@@ -10,8 +10,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Lapangan</th>
                   <th>Jam</th>
+                  <th>Lapangan</th>
                   <th>Tanggal Main</th>
                   <th>Nama Tim</th>
                   <th>Status</th>
@@ -26,11 +26,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <td>
                     <?php echo $nomor; ?>
                   </td>
-                  <td>
-                    <?php echo $book->id_lapangan; ?>
-                  </td>
+                  
                   <td>
                     <?php echo $book->jam_main; ?>
+                    <br/>
+                    <?php if ($book->id_jadwal1 == true): ?> 
+                      <?php foreach ($Booking1 as $book1) { ?> 
+                        <?php if ($book->id_booking == $book1->id_booking): ?> 
+                          <?php echo $book1->jam_main;?>
+                        <br>
+                        <?php endif ?>
+                      <?php }?>
+                    <?php endif ?>
+                    <?php if ($book->id_jadwal2 == true): ?> 
+                      <?php foreach ($Booking2 as $book2) { ?> 
+                        <?php if ($book->id_booking == $book2->id_booking): ?>  
+                        <?php echo $book2->jam_main;?>
+                        <br>
+                        <?php endif ?>
+                      <?php }?>
+                    <?php endif ?>
+                  </td>
+                  <td>
+                    <?php echo $book->id_lapangan; ?>
                   </td>
                   <td>
                     <?php echo $book->tanggal_booking; ?>

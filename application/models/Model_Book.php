@@ -33,18 +33,23 @@ class Model_book extends CI_Model {
         // $this->db->where('tb.id_user', 1);
         $hasil = $this->db->get()->result();
         echo '<script>console.log('.json_encode($hasil).')</script>';
-		// return $this->db->get()->result();
+		    // return $this->db->get()->result();
     }
 
     public function getAllBooking($data){
-        $query = $this->db->get_where('tbl_booking',$data);
-		return $query->row();
+        $this->db->select('tb.*');
+        $this->db->from('tbl_booking as tb');
+        $this->db->where('tb.id_lapangan',$data['id_lapangan']);
+        $this->db->where('tb.tanggal_booking',$data['tanggal_booking']);
+        // $hasil = $this->db->get()->result();
+        // echo '<script>console.log('.json_encode($hasil).')</script>';
+        // return $query->row();
+        return $this->db->get()->result();
     }
 
     public function addBook($data){
         $this->db->insert('tbl_booking',$data);
         return $this->db->affected_rows();
-
     }
 
     public function alljadwal($no)
@@ -71,6 +76,30 @@ class Model_book extends CI_Model {
       $this->db->from('tbl_booking as tb');
       $this->db->join('user as user',' user.id_user = tb.id_user','inner');
       $this->db->join('tbl_jadwal as tj',' tj.id_jadwal = tb.id_jadwal','inner');
+      $this->db->where('tb.status_booking',$id);
+      $this->db->order_by('tb.tanggal_booking','asc');
+      // $query = $this->db->get()->result();
+      // echo '<script>console.log('.json_encode($query).')</script>';
+      return $this->db->get()->result();
+   }
+   public function GetBookingByLapanganAdmin1($id)
+    {
+      $this->db->select('*');
+      $this->db->from('tbl_booking as tb');
+      $this->db->join('user as user',' user.id_user = tb.id_user','inner');
+      $this->db->join('tbl_jadwal as tj',' tj.id_jadwal = tb.id_jadwal1','inner');
+      $this->db->where('tb.status_booking',$id);
+      $this->db->order_by('tb.tanggal_booking','asc');
+      // $query = $this->db->get()->result();
+      // echo '<script>console.log('.json_encode($query).')</script>';
+      return $this->db->get()->result();
+   }
+   public function GetBookingByLapanganAdmin2($id)
+    {
+      $this->db->select('*');
+      $this->db->from('tbl_booking as tb');
+      $this->db->join('user as user',' user.id_user = tb.id_user','inner');
+      $this->db->join('tbl_jadwal as tj',' tj.id_jadwal = tb.id_jadwal2','inner');
       $this->db->where('tb.status_booking',$id);
       $this->db->order_by('tb.tanggal_booking','asc');
       // $query = $this->db->get()->result();
@@ -116,34 +145,54 @@ class Model_book extends CI_Model {
         // echo '<script>console.log('.json_encode($hasil).')</script>'; 
         return $this->db->get()->result(); 
     }
+    public function getBookUser1($id){
+        $this->db->select('*');
+        $this->db->from('tbl_booking as tb');
+        $this->db->join('user as user',' user.id_user = tb.id_user','inner');
+        $this->db->join('tbl_jadwal as tj',' tj.id_jadwal = tb.id_jadwal1','inner'); 
+        $this->db->where('user.id_user',$id); 
+        // $hasil = $this->db->get()->result(); 
+        // echo '<script>console.log('.json_encode($hasil).')</script>'; 
+        return $this->db->get()->result(); 
+    }
+    public function getBookUser2($id){
+        $this->db->select('*');
+        $this->db->from('tbl_booking as tb');
+        $this->db->join('user as user',' user.id_user = tb.id_user','inner');
+        $this->db->join('tbl_jadwal as tj',' tj.id_jadwal = tb.id_jadwal2','inner'); 
+        $this->db->where('user.id_user',$id); 
+        // $hasil = $this->db->get()->result(); 
+        // echo '<script>console.log('.json_encode($hasil).')</script>'; 
+        return $this->db->get()->result(); 
+    }
 
     public function updateStatus($id,$data){
         $this->db->where('id_booking', $id);
-		$this->db->update('tbl_booking',$data);
-		if($this->db->affected_rows() >=0){
-		  return true; 
-		}else{
-		  return false; 
-		}
+        $this->db->update('tbl_booking',$data);
+        if($this->db->affected_rows() >=0){
+          return true; 
+        }else{
+          return false; 
+        }
     }
 
     public function updateStatusAdmin($id,$data){
         $this->db->where('id_booking', $id);
-		$this->db->update('tbl_booking',$data);
-		if($this->db->affected_rows() >=0){
-		  return true;
-		}else{
-		  return false;
-		}
+        $this->db->update('tbl_booking',$data);
+        if($this->db->affected_rows() >=0){
+          return true;
+        }else{
+          return false;
+        }
     }
 
     public function deleteBooking($id){
         $this->db->where('id_booking', $id);
-		$this->db->delete('tbl_booking');
-		if($this->db->affected_rows() >=0){
-		  return true; 
-		}else{
-		  return false; 
-		}
+        $this->db->delete('tbl_booking');
+        if($this->db->affected_rows() >=0){
+          return true; 
+        }else{
+          return false; 
+        }
     }
 }

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 08, 2019 at 08:28 AM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Host: localhost
+-- Generation Time: Jan 14, 2019 at 05:10 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -54,17 +54,12 @@ CREATE TABLE `tbl_booking` (
   `id_user` int(5) NOT NULL,
   `tanggal_booking` date NOT NULL,
   `id_jadwal` int(2) NOT NULL,
+  `id_jadwal1` int(2) NOT NULL,
+  `id_jadwal2` int(2) NOT NULL,
   `status_booking` tinyint(4) NOT NULL,
   `waktu_expired` varchar(255) NOT NULL,
   `bukti_bayar` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_booking`
---
-
-INSERT INTO `tbl_booking` (`id_booking`, `id_lapangan`, `id_user`, `tanggal_booking`, `id_jadwal`, `status_booking`, `waktu_expired`, `bukti_bayar`) VALUES
-(16, 2, 1, '2019-01-17', 3, 0, '1546938758488', '');
 
 -- --------------------------------------------------------
 
@@ -199,7 +194,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `tbl_booking`
 --
 ALTER TABLE `tbl_booking`
-  MODIFY `id_booking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_booking` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_jadwal`
