@@ -166,9 +166,11 @@ class UserHome extends CI_Controller {
       date_default_timezone_set('Asia/Bangkok');
       $tanggal_booking = date('y-m-d');
     }
-    // echo '<script>console.log('.json_encode($tanggal_booking).')</script>';
+    // echo '<script>console.log('.json_encode($nama).')</script>';
     $data['tgl_book'] =$tanggal_booking;
-    // $data['data'] = $this->book->lap1($no);
+    $data['lapangan'] = $this->book->getLap($no);
+    // $nama_lapangan = $data[0]['nama_lapangan'];
+    // echo '<script>console.log('.json_encode($nama_lapangan).')</script>';
     $data['lapangan_book'] = $no; 
     $data['data'] = $this->book->alljadwal($no);
 		$data['Booking'] = $this->book->GetBookingByLapangan($no,$tanggal_booking);

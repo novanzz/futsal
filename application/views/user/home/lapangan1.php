@@ -6,8 +6,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="clearfix" style="margin-top:30px;">
     <span class="clearfix">
       <center>
-        <h3 style="margin-bottom:40px;">List Tabel Booking Lapangan
-          <?php echo $lapangan_book ?>
+        <h3 style="margin-bottom:40px;">List Tabel Booking
+        <?php foreach($lapangan as $lap){ ?>
+          <?php echo $lap->nama_lapangan ?>
+        <?php } ?>
+
         </h3>
       </center>
     </span>

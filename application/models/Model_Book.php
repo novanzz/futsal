@@ -133,6 +133,16 @@ class Model_book extends CI_Model {
         // echo '<script>console.log('.json_encode($hasil).')</script>'; 
         return $this->db->get()->result(); 
     }
+    
+    public function getLap($no) 
+     { 
+        $this->db->select('*'); 
+        $this->db->from('tbl_lapangan as tb'); 
+        $this->db->where('tb.id_lapangan',$no); 
+        // $hasil = $this->db->get()->result(); 
+        // echo '<script>console.log('.json_encode($hasil).')</script>'; 
+        return $this->db->get()->result(); 
+    }
 
     //get book user
     public function getBookUser($id){
