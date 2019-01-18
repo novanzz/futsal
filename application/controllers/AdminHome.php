@@ -8,6 +8,7 @@ class AdminHome extends CI_Controller {
     $this->load->model(array(
       'Model_Admin'=> 'admin',
       'Model_Book'=> 'book',
+      'Model_Lapangan'=> 'lapangan',
     ));
 
 		if ($this->session->level != "admin") {
@@ -22,6 +23,8 @@ class AdminHome extends CI_Controller {
   }
 
   public function listorder ($no){
+    $data['header'] = $this->lapangan->getAll();
+
 		$data['title']="List Order";
 		$data['data'] = $this->book->alljadwal($no);
     $tanggal_booking = $this->input->post('tanggal');
@@ -38,6 +41,8 @@ class AdminHome extends CI_Controller {
   
   public function verifikasi()
 	{
+    $data['header'] = $this->lapangan->getAll();
+
 		$data['title']="Verifikasi";
 		$id_status = 1;
     $data['Booking'] = $this->book->GetBookingByLapanganAdmin($id_status);
@@ -59,10 +64,82 @@ class AdminHome extends CI_Controller {
 
 	}
 
-  public function index (){
-    $data['title']="dashboard";
-    $data['page']= 'admin/home/dashboard';
+  public function index(){
+    $data['header'] = $this->lapangan->getAll();
+
+    $data['title']="Tambah Lapangan";
+    $data['data'] = $this->lapangan->getAll();
+    $data['header'] = $this->lapangan->getAll();
+    $data['page']= 'admin/home/lapangan';
     $this->load-> view ('shared/admin/layout',$data);
   }
 
+  public function tambahLapangan (){
+    $data['header'] = $this->lapangan->getAll();
+
+    $data['title']="Tambah Lapangan";
+    $data['page']= 'admin/home/addLap';
+    $this->load-> view ('shared/admin/layout',$data);
+  }
+
+  public function postLap (){
+    $config['upload_path'] = './assets/uploads/';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		
+    $this->load->library('upload', $config);
+    if(!$this->upload->do_upload('url')){
+			echo "<script>alert('File gambar bermasalah');location='".site_url()."AdminHome/tambahLapangan'</script>";
+		}else{
+      $data = array(
+        'nama_lapangan'	=>$this->input->post('nama_lapangan'),
+        'url'	    => $this->upload->data('file_name'),
+      );
+      $dataMatch = array(
+        'nama_lapangan'	=>$this->input->post('nama_lapangan'),
+      );
+      $add= $this->lapangan->getLap1($dataMatch);
+      if ($add == true){
+        echo "<script>alert('Lapangan sudah ada');location='"
+        .site_url('AdminHome/tambahLapangan')."'</script>";
+      }else{
+        $post = $this->lapangan->addLap($data);
+        echo "<script>alert('Berhasil tambah lapangan');location='".site_url('AdminHome/index')."'</script>";
+      }
+	  }
+  }
+
+  public function updateLap ($id){
+    $data['header'] = $this->lapangan->getAll();
+
+    $data['title']="Update Lapangan";
+    $data['id']=$id;
+    $data['data']=$this->lapangan->getLap($id);
+    $data['page']= 'admin/home/updateLap';
+    $this->load-> view ('shared/admin/layout',$data);
+  }
+
+  public function editLap ($id){
+    $config['upload_path'] = './assets/uploads/';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		
+    $this->load->library('upload', $config);
+    if(!$this->upload->do_upload('url')){
+			echo "<script>alert('File gambar bermasalah');location='".site_url()."AdminHome/index/'</script>";
+		}else{
+      $data = array(
+        'nama_lapangan'	=>$this->input->post('nama_lapangan'),
+        'url'	    => $this->upload->data('file_name'),
+      );
+      if ($this->lapangan->updateLap($id,$data)== "TRUE") {
+        redirect('AdminHome/index');
+      }
+    }
+	}
+
+  public function delLap ($id){
+    $_id =  $id;
+    if ($this->lapangan->delLap($_id)== "TRUE") {
+      redirect('AdminHome/index');
+    }
+  }
 }

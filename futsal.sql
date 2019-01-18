@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 14, 2019 at 05:10 AM
+-- Generation Time: Jan 18, 2019 at 02:58 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -103,20 +103,21 @@ INSERT INTO `tbl_jadwal` (`id_jadwal`, `jam_main`) VALUES
 
 CREATE TABLE `tbl_lapangan` (
   `id_lapangan` int(11) NOT NULL,
-  `nama_lapangan` varchar(25) NOT NULL
+  `nama_lapangan` varchar(25) NOT NULL,
+  `url` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_lapangan`
 --
 
-INSERT INTO `tbl_lapangan` (`id_lapangan`, `nama_lapangan`) VALUES
-(1, 'Lapangan 1'),
-(2, 'Lapangan 2'),
-(3, 'Lapangan 3'),
-(4, 'Lapangan 4'),
-(5, 'Lapangan'),
-(6, 'Lapangan 6');
+INSERT INTO `tbl_lapangan` (`id_lapangan`, `nama_lapangan`, `url`) VALUES
+(1, 'Lapangan 1', 'futsal31.jpeg'),
+(2, 'Lapangan 2', 'futsal1.jpg'),
+(3, 'Lapangan 3', 'lapangan2.jpg'),
+(4, 'Lapangan 4', 'futsal4.jpg'),
+(5, 'Lapangan 5', 'lapangan6.jpg'),
+(6, 'Lapangan 6', 'lapangan8.jpg');
 
 -- --------------------------------------------------------
 

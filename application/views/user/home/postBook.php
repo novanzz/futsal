@@ -188,7 +188,7 @@ $(document).ready(function () {
 <script type="text/javascript">
     var oldDate = new Date();
     var hour = oldDate.getHours();
-    var countDownDate = oldDate.setHours(hour + 2);
+    var countDownDate = oldDate.setHours(hour + 1);
     // Update the count down every 1 second
     var x = setInterval(function () {
 

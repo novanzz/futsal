@@ -1,6 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
+<style>
+      .zoom {
+      transition: transform .2s;
+    }
+
+    .zoom:hover {
+      -ms-transform: scale(1.5); /* IE 9 */
+      -webkit-transform: scale(1.5); /* Safari 3-8 */
+      transform: scale(1.5); 
+    }
+</style>
 
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="<?php echo site_url('AdminHome/index') ?>">MFC Futsal</a>
@@ -19,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <li class="nav-item">
                 <a class="nav-link active" href="<?php echo site_url('AdminHome/index') ?>">
                   <span data-feather="home"></span>
-                  Home <span class="sr-only">(current)</span>
+                  Tambah Lapangan <span class="sr-only">(current)</span>
                 </a>
               </li>
             </li>
@@ -32,12 +43,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <?php $lap6 = 6; ?>
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">  <span data-feather="list"></span>List Order</a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="<?php echo site_url('AdminHome/listorder/'.$lap1) ?>">Lapangan 1</a>
-              <a class="dropdown-item" href="<?php echo site_url('AdminHome/listorder/'.$lap2) ?>">Lapangan 2</a>
-              <a class="dropdown-item" href="<?php echo site_url('AdminHome/listorder/'.$lap3) ?>">Lapangan 3</a>
-              <a class="dropdown-item" href="<?php echo site_url('AdminHome/listorder/'.$lap4) ?>">Lapangan 4</a>
-              <a class="dropdown-item" href="<?php echo site_url('AdminHome/listorder/'.$lap5) ?>">Lapangan 5</a>
-              <a class="dropdown-item" href="<?php echo site_url('AdminHome/listorder/'.$lap6) ?>">Lapangan 6</a>
+            <?php foreach ($header as $lap) { ?>
+              <a class="dropdown-item" href="<?php echo site_url('AdminHome/listorder/'.$lap->id_lapangan) ?>"><?php echo $lap->nama_lapangan ?></a>
+            <?php } ?>
           </li>
               <!-- <li class="nav-item">
                 <a class="nav-link" href="<?php echo site_url('AdminHome/listorder') ?>">

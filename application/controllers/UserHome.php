@@ -8,6 +8,7 @@ class UserHome extends CI_Controller {
     $this->load->model(array(
       'Model_User'=> 'user',
       'Model_Book'=> 'book',
+      'Model_Lapangan'=> 'lapangan',
     ));
 
 		if ($this->session->level != "user") {
@@ -93,7 +94,7 @@ class UserHome extends CI_Controller {
           }
         }else{
           $post = $this->book->addBook($data);
-          echo "<script>alert('Booking Sukses kabe');location='".site_url('UserHome/index')."'</script>";
+          echo "<script>alert('Booking Sukses');location='".site_url('UserHome/index')."'</script>";
         }
   }
 
@@ -151,6 +152,7 @@ class UserHome extends CI_Controller {
   {
     // $this->load->view('index');
     $data['title']="Home";
+    $data['data'] = $this->lapangan->getAll();
     $data['page']= 'user/home/index';
     $this->load->view('shared/user/layout',$data);
   }
